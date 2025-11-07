@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Opinião e Mercado</title>
+    <style>
+        /* Variáveis CSS */
+        :root {
+            --cor-primaria: #198754; /* Verde escuro */
+            --cor-secundaria: #0d6efd; /* Azul para destaque */
+            --cor-fundo: #e9ecef;
+            --cor-borda: #dee2e6;
+            --cor-clara: #ffffff;
+        }
+
+        /* Estilos Base */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .survey-container {
+            width: 100%;
+            max-width: 850px;
+            background-color: var(--cor-clara);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--cor-primaria);
+            margin-bottom: 5px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 15px;
+        }
+
+        /* ------------------------------------- */
+        /* Estilos dos Grupos de Perguntas (Fieldset) */
+        /* ------------------------------------- */
+        fieldset {
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        legend {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--cor-secundaria);
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+
+        .question-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+
+        .question-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo dos Inputs de Texto/Área */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--cor-borda);
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        /* ------------------------------------- */
+        /* Estilos de Opções (Radio, Checkbox) */
+        /* ------------------------------------- */
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .options-list li {
+            margin-bottom: 8px;
+        }
+        
+        .options-list input[type="radio"],
+        .options-list input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.1); /* Aumenta um pouco o tamanho para visibilidade */
+        }
+
+        /* ------------------------------------- */
+        /* Estilo da Escala Likert (Tabela) */
+        /* ------------------------------------- */
+        .likert-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+            margin-top: 15px;
+        }
+
+        .likert-table th, .likert-table td {
+            border: 1px solid var(--cor-borda);
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        .likert-table th {
+            background-color: var(--cor-fundo);
+            color: var(--cor-primaria);
+            font-weight: bold;
+        }
+
+        .likert-table td:first-child {
+            text-align: left;
+            width: 40%;
+            color: #495057;
+        }
+
+        .likert-table input[type="radio"] {
+            margin: 0;
+            transform: scale(1.15);
+        }
+
+        /* ------------------------------------- */
+        /* Botão de Envio */
+        /* ------------------------------------- */
+        .submit-button {
+            background-color: var(--cor-primaria);
+            color: var(--cor-clara);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .submit-button:hover {
+            background-color: #157347;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="survey-container">
+        <header>
+            <h1>Pesquisa de Experiência do Cliente</h1>
+            <p class="subtitle">Agradecemos sua participação. Suas respostas são confidenciais.</p>
+        </header>
+
+        <form action="/submit_survey" method="POST">
+            
+            <fieldset>
+                <legend>Informações Pessoais</legend>
+
+                <div class="question-group">
+                    <label for="idade">Qual sua faixa etária?</label>
+                    <ul class="options-list">
+                        <li><input type="radio" id="idade1" name="idade" value="18-25" required> <label for="idade1" style="display: inline;">18 a 25 anos</label></li>
+                        <li><input type="radio" id="idade2" name="idade" value="26-35"> <label for="idade2" style="display: inline;">26 a 35 anos</label></li>
+                        <li><input type="radio" id="idade3" name="idade" value="36-50"> <label for="idade3" style="display: inline;">36 a 50 anos</label></li>
+                        <li><input type="radio" id="idade4" name="idade" value="50+"> <label for="idade4" style="display: inline;">Acima de 50 anos</label></li>
+                    </ul>
+                </div>
+
+                <div class="question-group">
+                    <label for="email">E-mail (Opcional para sorteios):</label>
+                    <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Satisfação com o Produto/Serviço</legend>
+
+                <p style="margin-bottom: 20px;">Utilize a escala de 1 a 5, onde 1 é Discordo Totalmente e 5 é Concordo Totalmente.</p>
+
+                <table class="likert-table">
+                    <thead>
+                        <tr>
+                            <th>Afirmação</th>
+                            <th>1<br><small>Discordo Totalmente</small></th>
+                            <th>2</th>
+                            <th>3<br><small>Neutro</small></th>
+                            <th>4</th>
+                            <th>5<br><small>Concordo Totalmente</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>O produto atendeu minhas expectativas.</td>
+                            <td><input type="radio" name="expectativas" value="1" required></td>
+                            <td><input type="radio" name="expectativas" value="2"></td>
+                            <td><input type="radio" name="expectativas" value="3"></td>
+                            <td><input type="radio" name="expectativas" value="4"></td>
+                            <td><input type="radio" name="expectativas" value="5"></td>
+                        </tr>
+                        <tr>
+                            <td>A usabilidade do serviço é intuitiva.</td>
+                            <td><input type="radio" name="usabilidade" value="1" required></td>
+                            <td><input type="radio" name="usabilidade" value="2"></td>
+                            <td><input type="radio" name="usabilidade" value="3"></td>
+                            <td><input type="radio" name="usabilidade" value="4"></td>
+                            <td><input type="radio" name="usabilidade" value="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Uso e Preferências</legend>
+
+                <div class="question-group">
+                    <label>Quais mídias sociais você utiliza ativamente? (Marque todas que se aplicam)</label>
+                    <ul class="options-list">
+                        <li><input type="checkbox" id="midia1" name="midias[]" value="instagram"> <label for="midia1" style="display: inline;">Instagram</label></li>
+                        <li><input type="checkbox" id="midia2" name="midias[]" value="linkedin"> <label for="midia2" style="display: inline;">LinkedIn</label></li>
+                        <li><input type="checkbox" id="midia3" name="midias[]" value="tiktok"> <label for="midia3" style="display: inline;">TikTok</label></li>
+                        <li><input type="checkbox" id="midia4" name="midias[]" value="x"> <label for="midia4" style="display: inline;">X (Antigo Twitter)</label></li>
+                    </ul>
+                </div>
+                
+                <div class="question-group">
+                    <label for="sugestao">Deixe seu comentário ou sugestão para melhoria:</label>
+                    <textarea id="sugestao" name="sugestao" rows="4" placeholder="Escreva aqui sua opinião..."></textarea>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="submit-button">Finalizar Pesquisa</button>
+        </form>
+    </div>
+
+</body>
+</html>
